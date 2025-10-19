@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc mừng 20/10</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 2px 2px 5px #ff6f91;
+      margin-bottom: 0.2em;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #fff;
+      margin-top: 0;
+    }
+
+    .flower {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Cherry_blossom_icon.svg/1024px-Cherry_blossom_icon.svg.png') no-repeat center/contain;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    #musicBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff6f91;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      font-weight: bold;
+    }
+
+    #musicBtn:hover {
+      background: #ff3b6f;
+    }
+
+    @media (max-width: 600px){
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Chúc mừng 20/10! 🎉</h1>
+  <p>Chúc các bạn nữ luôn xinh đẹp, vui vẻ và hạnh phúc 💐</p>
+
+  <button id="musicBtn">🔊 Bật nhạc nền</button>
+
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ âm thanh.
+  </audio>
+
+  <script>
+    const numFlowers = 40;
+    for(let i=0;i<numFlowers;i++){
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (3 + Math.random()*5)+'s';
+      flower.style.animationDelay = (Math.random()*5)+'s';
+      flower.style.filter = `hue-rotate(${Math.random()*360}deg)`;
+      flower.style.transform = `scale(${0.5 + Math.random()})`;
+      document.body.appendChild(flower);
+    }
+
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    musicBtn.addEventListener('click', () => {
+      bgMusic.play();
+      musicBtn.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
